@@ -7,11 +7,13 @@ const axiosInstance = axios.create({
 });
 
 export const fetchDevices = (n: number) => {
-  return axiosInstance.get("/devices", {
-    params: {
-      n,
-    },
-  });
+  return axiosInstance
+    .get("/devices", {
+      params: {
+        n,
+      },
+    })
+    .then(({ data }) => data);
 };
 
 export default axiosInstance;
