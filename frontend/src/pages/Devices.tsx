@@ -1,19 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Table, Tag, Button } from "antd";
+import { Table, Tag, Button, PageHeader, Input } from "antd";
 import { LinkOutlined } from "@ant-design/icons";
 
-import { fetchDevices } from "../api";
-
-export interface IDevice {
-  url: string;
-  status: string;
-  last_seen_at: string;
-  connection_type: string;
-  mac_wifi: string;
-  sim_id: string;
-  voltage: number;
-  serial_number: string;
-}
+import PageContainer, { IDevice } from "../components/PageContainer";
 
 const columns = [
   {
@@ -56,13 +45,13 @@ const columns = [
 ];
 
 const Devices = () => {
-  const [data, setData] = useState<IDevice[]>([]);
-
-  useEffect(() => {
-    fetchDevices(100).then((data: unknown) => setData(data as IDevice[]));
-  }, []);
-
-  return <Table columns={columns} dataSource={data} />;
+  return (
+    <PageContainer title="Devices">
+      {(data) => {
+        return <Table columns={columns} dataSource={data} />;
+      }}
+    </PageContainer>
+  );
 };
 
 export default Devices;
