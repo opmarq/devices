@@ -5,7 +5,7 @@ import { fetchDevices } from "../api";
 
 interface IPageContainer {
   title: string;
-  children: (data?: IDevice[]) => React.ReactNode;
+  children: (data: IDevice[]) => React.ReactNode;
 }
 
 export interface IDevice {

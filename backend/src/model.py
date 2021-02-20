@@ -1,5 +1,5 @@
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 from enum import Enum
 from typing import List, Optional
 
@@ -15,6 +15,7 @@ class ConnectionTypeEnum(Enum):
     cellular = "cellular"
     ethernet = "ethernet"
     wifi = "wifi"
+
 
 fake_macs = [
     "bb:82:56:5b:b0:c4",
@@ -38,6 +39,7 @@ fake_macs = [
     "d4:b5:31:9b:75:95",
     "20:15:b1:57:2c:31",
 ]
+
 
 class Device(BaseModel):
     """ Full device object """
@@ -97,15 +99,16 @@ class Device(BaseModel):
 
 def generate_device() -> Device:
     rr = random.randint(1, 100)
+    rHours = random.randint(0, 24)
     status = StatusEnum("connected") if rr > 50 else StatusEnum("disconnected")
     dev: Device = Device(
         url=f"https://fake.url/{rr}",
-        status= status,
-        last_seen_at = datetime.now(),
-        connection_type = ConnectionTypeEnum("cellular"),
-        mac_wifi = fake_macs[random.randint(0, len(fake_macs)-1)],
-        sim_id = "SomeFakeString",
-        voltage = random.uniform(1.0, 12.0),
-        serial_number = f"device_{rr}"
+        status=status,
+        last_seen_at=datetime.now() - timedelta(hours=rHours),
+        connection_type=ConnectionTypeEnum("cellular"),
+        mac_wifi=fake_macs[random.randint(0, len(fake_macs)-1)],
+        sim_id="SomeFakeString",
+        voltage=random.uniform(1.0, 12.0),
+        serial_number=f"device_{rr}"
     )
     return dev
