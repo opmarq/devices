@@ -11,10 +11,11 @@ class StatusEnum(Enum):
     connected = "connected"
 
 
-class ConnectionTypeEnum(Enum):
-    cellular = "cellular"
-    ethernet = "ethernet"
-    wifi = "wifi"
+connectionTypes = {
+    0: "wifi",
+    1: "cellular",
+    2: "ethernet"
+}
 
 
 fake_macs = [
@@ -60,7 +61,7 @@ class Device(BaseModel):
         description="UTC time when the device was last seen online",
     )
 
-    connection_type: Optional[ConnectionTypeEnum] = Field(
+    connection_type: Optional[str] = Field(
         None,
         title="Connection type",
         description="Indicates which network is in use - cellular, ethernet or wifi",
@@ -99,13 +100,18 @@ class Device(BaseModel):
 
 def generate_device() -> Device:
     rr = random.randint(1, 100)
+
     rHours = random.randint(0, 24)
+
+    rConnectionType = random.randint(0, 2)
+
     status = StatusEnum("connected") if rr > 50 else StatusEnum("disconnected")
+
     dev: Device = Device(
         url=f"https://fake.url/{rr}",
         status=status,
         last_seen_at=datetime.now() - timedelta(hours=rHours),
-        connection_type=ConnectionTypeEnum("cellular"),
+        connection_type=connectionTypes[rConnectionType],
         mac_wifi=fake_macs[random.randint(0, len(fake_macs)-1)],
         sim_id="SomeFakeString",
         voltage=random.uniform(1.0, 12.0),

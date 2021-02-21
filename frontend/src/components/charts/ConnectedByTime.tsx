@@ -25,10 +25,7 @@ const ConnectedByTime: React.FC<{ data: IDevice[] }> = ({ data }) => {
 
   return (
     <ResponsiveContainer width="100%" height={400}>
-      <LineChart
-        data={chartData}
-        margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
-      >
+      <LineChart data={chartData}>
         <Line type="monotone" dataKey="count" stroke="#8884d8" />
         <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
         <XAxis dataKey="name" />
