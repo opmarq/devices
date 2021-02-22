@@ -9,6 +9,8 @@ origins = [
     "http://localhost:3000",
     "http://localhost:8080",
     "http://localhost:8000",
+    "http://localhost:80",
+    "http://localhost",
 ]
 
 app = FastAPI(
@@ -27,5 +29,5 @@ app.add_middleware(
 
 
 @app.get("/devices", response_model=List[Device])
-async def get_devices(n: int=1) -> List[Device]:
+async def get_devices(n: int = 1) -> List[Device]:
     return [generate_device() for i in range(n)]
