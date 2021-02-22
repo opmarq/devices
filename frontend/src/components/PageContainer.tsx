@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { PageHeader, Input } from "antd";
+import { useHistory, useLocation } from "react-router-dom";
+import queryString from "query-string";
 
 import { fetchDevices } from "../api";
 
@@ -21,16 +23,25 @@ export interface IDevice {
 
 const PageContainer: React.FC<IPageContainer> = ({ title, children }) => {
   const [data, setData] = useState<IDevice[]>([]);
+  const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
-    fetchDevices(100).then((data: unknown) => setData(data as IDevice[]));
-  }, []);
+    const { q } = queryString.parse(location.search);
+
+    fetchDevices(100).then((data: IDevice[]) => {
+      let filtered = data;
+      if (q) {
+        filtered = data.filter((device) =>
+          device.serial_number.includes(q as string)
+        );
+      }
+      setData(filtered);
+    });
+  }, [location.search, location.pathname]);
 
   const onSearch = (value: string) => {
-    const filtered: IDevice[] = data.filter((device) =>
-      device.serial_number.includes(value)
-    );
-    setData(filtered);
+    history.push(`/devices?q=${value}`);
   };
 
   return (
