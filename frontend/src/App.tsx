@@ -3,7 +3,7 @@ import { Layout, Menu } from "antd";
 import { DashboardOutlined, BuildOutlined } from "@ant-design/icons";
 import { Route, Switch, Link, useLocation } from "react-router-dom";
 
-import { Logo } from "./components/Logo";
+import Logo from "./components/Logo";
 import DevicesPage from "./pages/Devices";
 import OverviewPage from "./pages/Overview";
 
@@ -14,7 +14,7 @@ function App() {
   return (
     <Layout>
       <Sider breakpoint="lg" collapsedWidth="0">
-        <Logo>Upciti</Logo>
+        <Logo />
         <Menu
           theme="dark"
           mode="inline"

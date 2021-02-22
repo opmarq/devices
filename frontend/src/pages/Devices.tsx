@@ -7,7 +7,7 @@ const Devices = () => {
   return (
     <PageContainer title="Devices">
       {(data) => {
-        return <DevicesTable data={data} pagination={false} />;
+        return <DevicesTable data={data} pagination={{}} />;
       }}
     </PageContainer>
   );
