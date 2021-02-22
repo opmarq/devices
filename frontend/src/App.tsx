@@ -12,7 +12,7 @@ const { Content, Footer, Sider } = Layout;
 function App() {
   const location = useLocation();
   return (
-    <Layout>
+    <Layout style={{ minHeight: "100vh" }}>
       <Sider breakpoint="lg" collapsedWidth="0">
         <Logo />
         <Menu
