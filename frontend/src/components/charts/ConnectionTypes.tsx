@@ -2,32 +2,18 @@ import React from "react";
 import { PieChart, Pie, ResponsiveContainer, Cell, Legend } from "recharts";
 
 import { IDevice } from "../PageContainer";
+import { getConnectionTypes } from "../../utils/helpers";
 
 const ConnectionTypes: React.FC<{ data: IDevice[] }> = ({ data }) => {
-  const chartData = data.reduce((current, next) => {
-    return {
-      ...current,
-      [next.connection_type]:
-        current[next.connection_type] !== undefined
-          ? current[next.connection_type] + 1
-          : 0,
-    };
-  }, {} as any);
-
-  const formatChartData = Object.keys(chartData).map((key) => {
-    return {
-      name: key,
-      value: chartData[key],
-    };
-  });
-
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
+
+  const formatedData = getConnectionTypes(data);
 
   return (
     <ResponsiveContainer width="100%" height={200}>
       <PieChart width={400} height={400}>
         <Pie
-          data={formatChartData}
+          data={formatedData}
           dataKey="value"
           nameKey="name"
           cx="50%"
