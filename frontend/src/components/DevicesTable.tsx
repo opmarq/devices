@@ -55,7 +55,7 @@ const DevicesTable: React.FC<IDevicesTable> = ({ data, pagination }) => {
       pagination={pagination}
       columns={columns}
       dataSource={data}
-      rowKey="mac_wifi"
+      rowKey="index"
     />
   );
 };

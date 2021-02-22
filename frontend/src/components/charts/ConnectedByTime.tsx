@@ -6,6 +6,7 @@ import {
   XAxis,
   YAxis,
   ResponsiveContainer,
+  Legend,
 } from "recharts";
 import { subHours, format, startOfHour, isEqual } from "date-fns";
 
@@ -30,6 +31,7 @@ const ConnectedByTime: React.FC<{ data: IDevice[] }> = ({ data }) => {
         <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
         <XAxis dataKey="name" />
         <YAxis />
+        <Legend />
       </LineChart>
     </ResponsiveContainer>
   );
