@@ -18,7 +18,7 @@ Dashboard that display devices data in realtime.
 
 - Display all devices sorted by last seen 
 
-- Sort by different columns
+- Sort by different columns ?
 
 - Search by device number
 
