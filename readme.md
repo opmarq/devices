@@ -38,7 +38,7 @@ Prerequisites: Docker, docker-compose
 
 .2 go to http://localhost
 
-You can also run the frontend alone by going to /frontend run run `npm run start`
+You can also run the frontend alone by going to /frontend and run `npm run start`
 
 To run unit test run `npm run test`
 
