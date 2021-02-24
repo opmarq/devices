@@ -1,4 +1,4 @@
-# Upciti
+# Devices
 
 Dashboard that display devices data in realtime.
 
@@ -36,7 +36,7 @@ Prerequisites: Docker, docker-compose
 
 .1 Spin up the back-end & front-end with `docker-compose up`
 
-.2 go to http://localhost
+.2 Go to http://localhost
 
 You can also run the frontend alone by going to /frontend and run `npm run start`
 
