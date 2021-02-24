@@ -1,6 +1,6 @@
 # Devices
 
-Dashboard that display devices data in realtime.
+A dashboard that display devices data in realtime.
 
 ## Features
 
